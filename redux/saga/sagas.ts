@@ -1,10 +1,13 @@
-import { takeLatest, put, call, takeEvery } from "redux-saga/effects";
-import { loginStart, loginSuccess, loginFailure } from "./loginSlice";
+import { call, takeEvery } from "redux-saga/effects";
+import { LOGIN_USER_ACTION } from "../actions/actions";
 
-function* submitCall() {
-  yield call(() => console.log("API CALL"))
+function* submitLoginCall() {
+  console.log(">> SAGA LOGIN");
+  yield call(() => console.log("API CALL"));
 }
 
 function* watchLogin() {
-  yield takeEvery()
+  yield takeEvery(LOGIN_USER_ACTION, submitLoginCall);
 }
+
+export default watchLogin;
