@@ -6,14 +6,14 @@ const initialState: initialLoginState = {
 };
 
 const rootReducers = createSlice({
-  name: "counter",
+  name: "login",
   initialState,
   reducers: {
     getLoginState: (state: any) => {
       return state;
     },
     loginUserSuccess: (state) => {
-      console.log("SUCCESSFULLY LOGGED IN");
+      console.log(">> SUCCESSFULLY LOGGED IN");
       state.isLoggedIn = true;
     },
     loginUserFailed: (state) => {

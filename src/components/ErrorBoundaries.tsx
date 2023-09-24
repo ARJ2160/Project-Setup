@@ -1,7 +1,11 @@
 import { Component } from "react";
 
-export default class ErrorBoundary extends Component {
-  constructor(props: any) {
+interface ErrorBoundaryProps {
+  hasError: boolean;
+}
+
+export default class ErrorBoundary extends Component<ErrorBoundaryProps> {
+  constructor(props: ErrorBoundaryProps) {
     super(props);
     this.state = { hasError: false };
   }
@@ -12,6 +16,7 @@ export default class ErrorBoundary extends Component {
     console.log(error, info);
   }
 
+  
   render() {
     if (this.state.hasError) {
       // Render the fallback UI

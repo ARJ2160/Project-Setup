@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getLoginState } from "../../redux/reducers/reducers";
 import { LoginPageProps } from "../../types/types";
 
-const Login = (handleLogin: LoginPageProps) => {
+const Login = ({ handleLogin }: LoginPageProps) => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const dispatch = useDispatch();
@@ -20,11 +20,10 @@ const Login = (handleLogin: LoginPageProps) => {
     (event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault();
       if (email && password) {
-        console.log(">>", handleLogin);
-        handleLogin({ email, password });
+        handleLogin(email, password);
         setEmail("");
         setPassword("");
-        dispatch(getLoginState);
+        dispatch(getLoginState());
       }
     },
     [email, password]

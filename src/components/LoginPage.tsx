@@ -1,13 +1,12 @@
 import { Component } from "react";
 import Login from "./Login";
 import { connect } from "react-redux";
-import { loginUserAction } from "../../redux/actions/actions";
 import { AnyAction, Dispatch } from "@reduxjs/toolkit";
-import { loginUserSuccess } from "../../redux/reducers/reducers";
 import { userCredentials } from "../../types/types";
+import { getLoginState, loginUserSuccess } from "../../redux/reducers/reducers";
 
-class LoginPage extends Component<userCredentials | Dispatch<AnyAction>> {
-  constructor(props: userCredentials | Dispatch<AnyAction>) {
+class LoginPage extends Component<Dispatch<AnyAction> | any> {
+  constructor(props: any) {
     super(props);
     this.state = {
       email: "",
@@ -19,7 +18,6 @@ class LoginPage extends Component<userCredentials | Dispatch<AnyAction>> {
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) {
     this.setState({ email: e.target.value });
-    this.state.email;
   }
 
   handlePasswordChange(
@@ -29,9 +27,9 @@ class LoginPage extends Component<userCredentials | Dispatch<AnyAction>> {
   }
 
   handleLogin = (email: string, password: string) => {
-    console.log("CLASSS", loginUserAction);
-    this.props.dispatch(loginUserAction({ email, password }));
-    this.props.dispatch(loginUserSuccess());
+    console.log(">>", this.props, email, password);
+    this.props.getLoginState();
+    this.props.loginUserSuccess();
   };
 
   render() {
@@ -50,10 +48,9 @@ const mapStateToProps = (state: userCredentials) => {
   };
 };
 
-const mapDispatchToProps = (dispatch: Dispatch) => {
-  return {
-    dispatch,
-  };
+const mapDispatchToProps = {
+  getLoginState,
+  loginUserSuccess,
 };
 const LoginPageClass = connect(mapStateToProps, mapDispatchToProps)(LoginPage);
 export default LoginPageClass;
