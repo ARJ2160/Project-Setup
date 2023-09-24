@@ -2,7 +2,6 @@ import { call, takeEvery } from "redux-saga/effects";
 import { LOGIN_USER_ACTION } from "../actions/actions";
 
 function* submitLoginCall(action: any) {
-  console.log(">> SAGA LOGIN");
   yield call(() => console.log("API CALL", action));
 }
 

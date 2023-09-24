@@ -5,16 +5,16 @@ export const LOGIN_USER_SUCCESS = "LOGIN_USER_SUCCESS";
 export const LOGIN_USER_FAILED = "LOGIN_USER_FAILED";
 
 export const loginUserAction = (credentials: userCredentials) => {
-  type: LOGIN_USER_ACTION;
-  payload: {
-    credentials.email, credentials.password;
-  }
+  return {
+    type: LOGIN_USER_ACTION,
+    payload: credentials,
+  };
 };
 
 export const loginUserSuccessAction = () => {
-  type: LOGIN_USER_SUCCESS;
+  return { type: LOGIN_USER_SUCCESS };
 };
 
 export const loginUserFailedAction = () => {
-  type: LOGIN_USER_FAILED;
+  return { type: LOGIN_USER_FAILED };
 };

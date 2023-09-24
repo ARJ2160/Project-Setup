@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { AnyAction, Dispatch } from "@reduxjs/toolkit";
 import { userCredentials } from "../../types/types";
 import { getLoginState, loginUserSuccess } from "../../redux/reducers/reducers";
+import { loginUserAction } from "../../redux/actions/actions";
 
 class LoginPage extends Component<Dispatch<AnyAction> | any> {
   constructor(props: any) {
@@ -30,6 +31,7 @@ class LoginPage extends Component<Dispatch<AnyAction> | any> {
     console.log(">>", this.props, email, password);
     this.props.getLoginState();
     this.props.loginUserSuccess();
+    this.props.loginUserAction({ email, password });
   };
 
   render() {
@@ -51,6 +53,7 @@ const mapStateToProps = (state: userCredentials) => {
 const mapDispatchToProps = {
   getLoginState,
   loginUserSuccess,
+  loginUserAction,
 };
 const LoginPageClass = connect(mapStateToProps, mapDispatchToProps)(LoginPage);
 export default LoginPageClass;
