@@ -1,4 +1,4 @@
-import { Component } from "react";
+import { Component } from 'react';
 
 interface ErrorBoundaryProps {
   hasError: boolean;
@@ -16,7 +16,6 @@ export default class ErrorBoundary extends Component<ErrorBoundaryProps> {
     console.log(error, info);
   }
 
-  
   render() {
     if (this.state.hasError) {
       // Render the fallback UI

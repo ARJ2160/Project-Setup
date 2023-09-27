@@ -1,17 +1,17 @@
-import { Component } from "react";
-import Login from "./Login";
-import { connect } from "react-redux";
-import { AnyAction, Dispatch } from "@reduxjs/toolkit";
-import { userCredentials } from "../../types/types";
-import { getLoginState, loginUserSuccess } from "../../redux/reducers/reducers";
-import { loginUserAction } from "../../redux/actions/actions";
+import { Component } from 'react';
+import Login from './Login';
+import { connect } from 'react-redux';
+import { AnyAction, Dispatch } from '@reduxjs/toolkit';
+import { userCredentials } from '../../types/types';
+import { getLoginState, loginUserSuccess } from '../../redux/reducers/reducers';
+import { loginUserAction } from '../../redux/actions/actions';
 
 class LoginPage extends Component<Dispatch<AnyAction> | any> {
   constructor(props: any) {
     super(props);
     this.state = {
-      email: "",
-      password: "",
+      email: '',
+      password: ''
     };
   }
 
@@ -28,7 +28,7 @@ class LoginPage extends Component<Dispatch<AnyAction> | any> {
   }
 
   handleLogin = (email: string, password: string) => {
-    console.log(">>", this.props, email, password);
+    console.log('>>', this.props, email, password);
     this.props.getLoginState();
     this.props.loginUserSuccess();
     this.props.loginUserAction({ email, password });
@@ -46,14 +46,14 @@ class LoginPage extends Component<Dispatch<AnyAction> | any> {
 const mapStateToProps = (state: userCredentials) => {
   return {
     email: state.email,
-    password: state.password,
+    password: state.password
   };
 };
 
 const mapDispatchToProps = {
   getLoginState,
   loginUserSuccess,
-  loginUserAction,
+  loginUserAction
 };
 const LoginPageClass = connect(mapStateToProps, mapDispatchToProps)(LoginPage);
 export default LoginPageClass;
