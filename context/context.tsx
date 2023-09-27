@@ -6,18 +6,31 @@ import {
   createTheme,
 } from "@mui/material/styles";
 import { createContext, useState } from "react";
+import {
+  Theme,
+  ThemeContextProviderProps,
+  ThemeContextType,
+} from "../types/types";
 
-const ThemeContext = createContext({
+const ThemeContext = createContext<ThemeContextType | null>({
   theme: "light",
   toggleTheme: () => {},
 });
 
-export const ThemeProvider = ({ children }: any) => {
-  const [theme, setTheme] = useState("light");
+export const ThemeProvider = ({ children }: ThemeContextProviderProps) => {
+  const [theme, setTheme] = useState<Theme>("light");
   const defaultTheme = createTheme();
 
   const toggleTheme = () => {
-    setTheme((theme) => (theme === "light" ? "black" : "light"));
+    if (theme === "light") {
+      setTheme("dark");
+      localStorage.setItem("theme", "dark");
+      document.documentElement.classList.add("dark");
+    } else {
+      setTheme("light");
+      window.localStorage.setItem("theme", "light");
+      document.documentElement.classList.remove("dark");
+    }
   };
 
   const styles = css``;
